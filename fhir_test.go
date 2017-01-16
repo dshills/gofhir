@@ -4,9 +4,10 @@ import "testing"
 
 const pid = "Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
 const ordercode = "8310-5"
+const baseurl = "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/"
 
 func TestDevice(t *testing.T) {
-	c := New("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/")
+	c := New(baseurl)
 	data, err := c.GetDevice(pid)
 	if err != nil {
 		t.Error(err)
@@ -17,7 +18,7 @@ func TestDevice(t *testing.T) {
 }
 
 func TestPatSearch(t *testing.T) {
-	c := New("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/")
+	c := New(baseurl)
 	data, err := c.PatientSearch("family=Argonaut&given=Jason")
 	if err != nil {
 		t.Fatal(err)
@@ -28,7 +29,7 @@ func TestPatSearch(t *testing.T) {
 }
 
 func TestPatient(t *testing.T) {
-	c := New("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/")
+	c := New(baseurl)
 	data, err := c.GetPatient(pid)
 	if err != nil {
 		t.Fatal(err)
@@ -39,7 +40,7 @@ func TestPatient(t *testing.T) {
 }
 
 func TestDocument(t *testing.T) {
-	c := New("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/")
+	c := New(baseurl)
 	data, err := c.GetDocumentReference(pid)
 	if err != nil {
 		t.Fatal(err)
@@ -50,7 +51,7 @@ func TestDocument(t *testing.T) {
 }
 
 func TestCondition(t *testing.T) {
-	c := New("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/")
+	c := New(baseurl)
 	data, err := c.GetCondition(pid)
 	if err != nil {
 		t.Fatal(err)
@@ -61,7 +62,7 @@ func TestCondition(t *testing.T) {
 }
 
 func TestProcedure(t *testing.T) {
-	c := New("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/")
+	c := New(baseurl)
 	data, err := c.GetProcedure(pid)
 	if err != nil {
 		t.Fatal(err)
@@ -72,7 +73,7 @@ func TestProcedure(t *testing.T) {
 }
 
 func TestMedication(t *testing.T) {
-	c := New("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/")
+	c := New(baseurl)
 	data, err := c.GetMedication(pid)
 	if err != nil {
 		t.Fatal(err)
@@ -83,7 +84,7 @@ func TestMedication(t *testing.T) {
 }
 
 func TestObservation(t *testing.T) {
-	c := New("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/")
+	c := New(baseurl)
 	data, err := c.GetObservation(pid, ordercode)
 	if err != nil {
 		t.Fatal(err)
@@ -94,7 +95,7 @@ func TestObservation(t *testing.T) {
 }
 
 func TestImmunization(t *testing.T) {
-	c := New("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/")
+	c := New(baseurl)
 	data, err := c.GetImmunization(pid)
 	if err != nil {
 		t.Fatal(err)
@@ -105,7 +106,7 @@ func TestImmunization(t *testing.T) {
 }
 
 func TestAllergy(t *testing.T) {
-	c := New("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/")
+	c := New(baseurl)
 	data, err := c.GetAllergyIntolerence(pid)
 	if err != nil {
 		t.Fatal(err)
@@ -116,7 +117,7 @@ func TestAllergy(t *testing.T) {
 }
 
 func TestFamilyHx(t *testing.T) {
-	c := New("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/")
+	c := New(baseurl)
 	data, err := c.GetFamilyMemberHistory(pid)
 	if err != nil {
 		t.Fatal(err)
