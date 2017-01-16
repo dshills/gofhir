@@ -7,8 +7,8 @@ import (
 )
 
 // GetObservation will return a careplan for a patient with id pid
-func (c *Connection) GetObservation(pid string) (*Observation, error) {
-	b, err := c.Query(fmt.Sprintf("Observation?patient=%v", pid))
+func (c *Connection) GetObservation(pid string, code string) (*Observation, error) {
+	b, err := c.Query(fmt.Sprintf("Observation?patient=%v&code=%v", pid, code))
 	if err != nil {
 		return nil, err
 	}

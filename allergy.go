@@ -21,20 +21,16 @@ func (c *Connection) GetAllergyIntolerence(pid string) (*AllergyIntolerence, err
 
 // AllergyIntolerence is a FHIR allergy intolerence
 type AllergyIntolerence struct {
-	ResourceType string `json:"resourceType"`
-	Type         string `json:"type"`
-	Total        int    `json:"total"`
-	Link         []Link `json:"link"`
-	Entry        []struct {
+	SearchResult
+	Entry []struct {
 		EntryPartial
 		Resource struct {
 			ResourcePartial
-			Criticality string    `json:"criticality"`
-			Onset       time.Time `json:"onset"`
-			Recorder    Person    `json:"recorder"`
-			Substance   Concept   `json:"substance"`
-			Note        Note      `json:"note"`
-			Reaction    Reaction  `json:"reaction"`
+			Criticality string     `json:"criticality"`
+			Onset       time.Time  `json:"onset"`
+			Substance   Concept    `json:"substance"`
+			Reaction    []Reaction `json:"reaction"`
+			Note        Note       `json:"note"`
 		} `json:"resource"`
 	} `json:"entry"`
 }

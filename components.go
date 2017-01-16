@@ -4,10 +4,20 @@ import "time"
 
 // SearchResult is a search result
 type SearchResult struct {
-	ResourceType string `json:"resourceType"`
-	Type         string `json:"type"`
-	Total        int    `json:"total"`
-	Link         []Link `json:"link"`
+	ResourceType string  `json:"resourceType"`
+	Type         string  `json:"type"`
+	Total        int     `json:"total"`
+	Link         []Link  `json:"link"`
+	ID           string  `json:"id"`
+	Issues       []Issue `json:"issue"`
+}
+
+// Issue is a FHIR issue
+type Issue struct {
+	Severity string   `json:"severity"`
+	Location []string `json:"location"`
+	Code     string   `json:"code"`
+	Details  Concept  `json:"details"`
 }
 
 // EntryPartial are the common entry fields
@@ -27,6 +37,7 @@ type ResourcePartial struct {
 	Subject           Person    `json:"subject"`
 	Patient           Person    `json:"patient"`
 	Performer         Person    `json:"performer"`
+	Recorder          Person    `json:"recorder"`
 }
 
 // SearchMode is a FHIR search mode

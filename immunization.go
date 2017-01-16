@@ -21,13 +21,17 @@ func (c *Connection) GetImmunization(pid string) (*Immunization, error) {
 
 // Immunization is a FHIR immunization
 type Immunization struct {
-	ResourceType string    `json:"resourceType"`
-	Status       string    `json:"status"`
-	Date         time.Time `json:"date"`
-	WasNotGiven  bool      `json:"wasNotGiven"`
-	Reported     bool      `json:"reported"`
-	LotNumber    string    `json:"lotNumber"`
-	ID           string    `json:"id"`
-	VaccineCode  Concept   `json:"vaccineCode"`
-	Patient      Person    `json:"patient"`
+	SearchResult
+	Entry []struct {
+		EntryPartial
+		Resource struct {
+			ResourcePartial
+			Date        time.Time `json:"date"`
+			WasNotGiven bool      `json:"wasNotGiven"`
+			Reported    bool      `json:"reported"`
+			LotNumber   string    `json:"lotNumber"`
+			ID          string    `json:"id"`
+			VaccineCode Concept   `json:"vaccineCode"`
+		} `json:"resource"`
+	} `json:"entry"`
 }
