@@ -3,7 +3,13 @@ package fhir
 import (
 	"fmt"
 	"io/ioutil"
+	"net"
 	"net/http"
+	"time"
+)
+
+const (
+	timeout = 3
 )
 
 // RetData is the mapped json of the request
@@ -17,7 +23,20 @@ type Connection struct {
 
 // New creates a new connection
 func New(baseurl string) *Connection {
-	return &Connection{BaseURL: baseurl, client: &http.Client{}}
+	return &Connection{
+		BaseURL: baseurl,
+		client: &http.Client{
+			Transport: &http.Transport{
+				Dial: (&net.Dialer{
+					Timeout:   time.Duration(timeout*3) * time.Second,
+					KeepAlive: time.Duration(timeout*3) * time.Second,
+				}).Dial,
+				TLSHandshakeTimeout:   time.Duration(timeout) * time.Second,
+				ResponseHeaderTimeout: time.Duration(timeout) * time.Second,
+				ExpectContinueTimeout: 1 * time.Second,
+			},
+		},
+	}
 }
 
 // Query sends a query to the base url
