@@ -26,7 +26,12 @@ _testmain.go
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-vendor/
 data/
 log/
 public/
+
+local.up.sh
+tags
+
+cbtest.xlsx
+*.code-workspace
