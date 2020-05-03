@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	timeout = 3
+	DefaultTimeout = 3
 )
 
 // RetData is the mapped json of the request
@@ -22,7 +22,11 @@ type Connection struct {
 }
 
 // New creates a new connection
-func New(baseurl string) *Connection {
+func New(baseurl string, newtimeout ...int) *Connection {
+	timeout := DefaultTimeout
+	if len(newtimeout) > 0 {
+		timeout = newtimeout[0]
+	}
 	return &Connection{
 		BaseURL: baseurl,
 		client: &http.Client{
